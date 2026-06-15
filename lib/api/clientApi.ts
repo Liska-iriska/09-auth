@@ -16,7 +16,11 @@ export type NewNoteData = {
 export type RegisterRequest = {
   email: string;
   password: string;
-  // userName: string;
+};
+
+export type UpdateUserRequest = {
+  userName?: string;
+  photoUrl?: string;
 };
 
 export const fetchNotes = async (
@@ -66,6 +70,7 @@ export const logout = async (): Promise<void> => {
   await api.post("/auth/logout");
 };
 
-// checkSession;
-// getMe;
-// updateMe;
+export const updateMe = async (payload: UpdateUserRequest) => {
+  const res = await api.patch<User>("/auth/me", payload);
+  return res.data;
+};
