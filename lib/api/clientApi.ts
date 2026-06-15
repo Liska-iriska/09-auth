@@ -19,8 +19,8 @@ export type RegisterRequest = {
 };
 
 export type UpdateUserRequest = {
-  usernname?: string;
-  photoUrl?: string;
+  username?: string;
+  avatar?: string;
 };
 
 export const fetchNotes = async (
