@@ -1,7 +1,7 @@
 import { User } from "@/types/user";
 import api from "./api";
 import { cookies } from "next/headers";
-import { Note, NoteTag } from "@/types/note";
+import { Note } from "@/types/note";
 
 type CheckSessionRequest = {
   success: boolean;

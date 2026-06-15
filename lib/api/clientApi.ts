@@ -74,3 +74,13 @@ export const updateMe = async (payload: UpdateUserRequest) => {
   const res = await api.patch<User>("/auth/me", payload);
   return res.data;
 };
+
+export const checkSession = async () => {
+  const res = await api.get<{ success: boolean }>("/auth/session");
+  return res.data.success;
+};
+
+export const getMe = async (): Promise<User> => {
+  const { data } = await api.get<User>("/auth/me");
+  return data;
+};
