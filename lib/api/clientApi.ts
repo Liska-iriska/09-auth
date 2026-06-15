@@ -57,8 +57,15 @@ export const register = async (data: RegisterRequest) => {
   return res.data;
 };
 
-// login;
-// logout;
+export const login = async (data: RegisterRequest) => {
+  const res = await api.post<User>("/auth/login", data);
+  return res.data;
+};
+
+export const logout = async (): Promise<void> => {
+  await api.post("/auth/logout");
+};
+
 // checkSession;
 // getMe;
 // updateMe;
