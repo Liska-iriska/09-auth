@@ -20,7 +20,7 @@ export type RegisterRequest = {
 
 export type UpdateUserRequest = {
   username?: string;
-  avatar?: string;
+  email?: string;
 };
 
 export const fetchNotes = async (

@@ -11,6 +11,7 @@ const EditProfile = () => {
   const [userName, setUserName] = useState("");
   const setUser = useAuthStore((state) => state.setUser);
   const router = useRouter();
+  const user = useAuthStore((state) => state.user);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(event.target.value);
@@ -18,7 +19,10 @@ const EditProfile = () => {
 
   const handleSaveUser = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const updatedUser = await updateMe({ username: userName, avatar: "" });
+    const updatedUser = await updateMe({
+      username: userName,
+      email: user?.email,
+    });
     setUser(updatedUser);
     router.push("/profile");
   };
