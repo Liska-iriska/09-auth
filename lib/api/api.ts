@@ -1,12 +1,14 @@
 import axios from "axios";
-import type { Note, NoteTag } from "../types/note";
+import type { Note, NoteTag } from "../../types/note";
 
 const instance = axios.create({
-  baseURL: "https://notehub-public.goit.study/api",
+  baseURL: "https://notehub-api.goit.study",
   headers: {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
   },
 });
+
+// const baseURL = process.env.NEXT_PUBLIC_API_URL + "/api";
 
 interface HTTPResponse {
   notes: Note[];
