@@ -2,6 +2,27 @@ import css from "./ProfilePage.module.css";
 import Link from "next/link";
 import { getMe } from "@/lib/api/serverApi";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile Next App",
+  description: "Profile Next App details",
+  openGraph: {
+    title: "Profile Next App",
+    description: "Profile Next App details",
+    url: `https://09-auth-ebon-iota.vercel.app/profile`,
+    siteName: "NoteHub",
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        width: 1200,
+        height: 630,
+        alt: "NoteHub Logo",
+      },
+    ],
+    type: "article",
+  },
+};
 
 const Profile = async () => {
   const user = await getMe();
@@ -17,7 +38,7 @@ const Profile = async () => {
         </div>
         <div className={css.avatarWrapper}>
           <Image
-            src="user_avatar"
+            src={user.avatar}
             alt="User Avatar"
             width={120}
             height={120}

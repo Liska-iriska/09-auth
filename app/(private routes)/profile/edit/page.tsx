@@ -1,26 +1,20 @@
 "use client";
 
 import css from "./EditProfilePage.module.css";
-import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { updateMe } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/authStore";
 
 const EditProfile = () => {
-  const [userName, setUserName] = useState("");
   const setUser = useAuthStore((state) => state.setUser);
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUserName(event.target.value);
-  };
-
-  const handleSaveUser = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSaveUser = async (formData: FormData) => {
+    const username = formData.get("username") as string;
     const updatedUser = await updateMe({
-      username: userName,
+      username,
       email: user?.email,
     });
     setUser(updatedUser);
@@ -37,26 +31,25 @@ const EditProfile = () => {
         <h1 className={css.formTitle}>Edit Profile</h1>
 
         <Image
-          src="avatar"
+          src={user?.avatar ?? ""}
           alt="User Avatar"
           width={120}
           height={120}
           className={css.avatar}
         />
 
-        <form onSubmit={handleSaveUser} className={css.profileInfo}>
+        <form action={handleSaveUser} className={css.profileInfo}>
           <div className={css.usernameWrapper}>
             <label htmlFor="username">Username:</label>
             <input
               id="username"
               type="text"
-              value={userName}
               className={css.input}
-              onChange={handleChange}
+              defaultValue={user?.username ?? ""}
             />
           </div>
 
-          <p>Email: user_email@example.com</p>
+          <p>{user?.email}</p>
 
           <div className={css.actions}>
             <button type="submit" className={css.saveButton}>

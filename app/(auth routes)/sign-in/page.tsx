@@ -12,8 +12,10 @@ const SignIn = () => {
   const [error, setError] = useState("");
   const setUser = useAuthStore((state) => state.setUser);
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     try {
+      const formData = new FormData(event.currentTarget);
       const formValues = Object.fromEntries(formData) as RegisterRequest;
       const res = await login(formValues);
       if (res) {
@@ -26,14 +28,14 @@ const SignIn = () => {
       setError(
         (error as ApiError).response?.data?.error ??
           (error as ApiError).message ??
-          "Oops... some error",
+          "Oops... something is wrong!",
       );
     }
   };
 
   return (
     <main className={css.mainContent}>
-      <form className={css.form} action={handleSubmit}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <h1 className={css.formTitle}>Sign in</h1>
 
         <div className={css.formGroup}>
