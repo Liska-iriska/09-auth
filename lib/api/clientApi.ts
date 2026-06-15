@@ -19,7 +19,7 @@ export type RegisterRequest = {
 };
 
 export type UpdateUserRequest = {
-  userName?: string;
+  usernname?: string;
   photoUrl?: string;
 };
 
