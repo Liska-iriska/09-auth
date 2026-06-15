@@ -2,14 +2,20 @@
 // fetchNoteById
 import { User } from "@/types/user";
 import api from "./api";
+import { cookies } from "next/headers";
 
 type CheckSessionRequest = {
   success: boolean;
 };
 
 export const checkSession = async () => {
-  const res = await api.get<CheckSessionRequest>("/auth/session");
-  return res.data.success;
+  const cookieStore = await cookies();
+  const res = await api.get<CheckSessionRequest>("/auth/session", {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
+  return res;
 };
 
 export const getMe = async () => {

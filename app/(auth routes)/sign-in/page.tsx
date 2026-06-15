@@ -5,16 +5,19 @@ import { useRouter } from "next/navigation";
 import { login, RegisterRequest } from "@/lib/api/clientApi";
 import { ApiError } from "@/lib/api/api";
 import css from "./SignInPage.module.css";
+import { useAuthStore } from "@/lib/store/authStore";
 
 const SignIn = () => {
   const router = useRouter();
   const [error, setError] = useState("");
+  const setUser = useAuthStore((state) => state.setUser);
 
   const handleSubmit = async (formData: FormData) => {
     try {
       const formValues = Object.fromEntries(formData) as RegisterRequest;
       const res = await login(formValues);
       if (res) {
+        setUser(res);
         router.push("/profile");
       } else {
         setError("Invalid email or password");
