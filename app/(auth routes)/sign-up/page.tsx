@@ -62,10 +62,8 @@ const SignUp = () => {
             Register
           </button>
         </div>
-
-        <p className={css.error}>Error</p>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className={css.error}>Error</p>}
     </main>
   );
 };
