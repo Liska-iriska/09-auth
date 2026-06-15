@@ -81,5 +81,6 @@ export const config = {
     "/sign-up",
     "/notes",
     "/notes/:path*",
+    "/api/notes/:path*",
   ],
 };
