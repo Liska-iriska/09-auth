@@ -91,7 +91,7 @@ export default function NoteForm() {
           className={css.cancelButton}
           onClick={handleCancel}
         >
-          Cancel...
+          Cancel
         </button>
         <button
           type="submit"
