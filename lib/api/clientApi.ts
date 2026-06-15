@@ -71,7 +71,7 @@ export const logout = async (): Promise<void> => {
 };
 
 export const updateMe = async (payload: UpdateUserRequest) => {
-  const res = await api.patch<User>("/auth/me", payload);
+  const res = await api.patch<User>("/users/me", payload);
   return res.data;
 };
 
@@ -81,6 +81,6 @@ export const checkSession = async () => {
 };
 
 export const getMe = async (): Promise<User> => {
-  const { data } = await api.get<User>("/auth/me");
+  const { data } = await api.get<User>("/users/me");
   return data;
 };
