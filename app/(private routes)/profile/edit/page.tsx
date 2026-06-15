@@ -13,10 +13,7 @@ const EditProfile = () => {
 
   const handleSaveUser = async (formData: FormData) => {
     const username = formData.get("username") as string;
-    const updatedUser = await updateMe({
-      username,
-      email: user?.email,
-    });
+    const updatedUser = await updateMe({ username });
     setUser(updatedUser);
     router.push("/profile");
   };
@@ -44,6 +41,7 @@ const EditProfile = () => {
             <input
               id="username"
               type="text"
+              name="username"
               className={css.input}
               defaultValue={user?.username ?? ""}
             />
