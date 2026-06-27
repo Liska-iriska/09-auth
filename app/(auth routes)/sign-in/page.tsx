@@ -23,7 +23,7 @@ const SignIn = () => {
       if (res) {
         setUser(res);
         queryClient.clear();
-        router.push("/profile");
+        router.push("/notes/filter/all");
       } else {
         setError("Invalid email or password");
       }
