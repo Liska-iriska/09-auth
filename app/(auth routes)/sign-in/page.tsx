@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { login, RegisterRequest } from "@/lib/api/clientApi";
 import { ApiError } from "@/lib/api/api";
 import css from "./SignInPage.module.css";
@@ -9,7 +9,7 @@ import { useAuthStore } from "@/lib/store/authStore";
 import { useQueryClient } from "@tanstack/react-query";
 
 const SignIn = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const queryClient = useQueryClient();
   const [error, setError] = useState("");
   const setUser = useAuthStore((state) => state.setUser);
@@ -23,7 +23,7 @@ const SignIn = () => {
       if (res) {
         setUser(res);
         queryClient.clear();
-        router.push("/notes/filter/all");
+        window.location.href = "/notes/filter/all";
       } else {
         setError("Invalid email or password");
       }

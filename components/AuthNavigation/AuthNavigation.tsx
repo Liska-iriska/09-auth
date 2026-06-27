@@ -20,7 +20,7 @@ const AuthNavigation = () => {
     clearIsAuthenticated();
     queryClient.clear();
     router.refresh();
-    router.push("/sign-in");
+    window.location.href = "/sign-in";
   };
 
   return isAuthenticated ? (
