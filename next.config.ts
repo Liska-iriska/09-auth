@@ -5,14 +5,14 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ hostname: "ac.goit.global" }],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "https://notehub-api.goit.study/api/:path*",
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/api/:path*",
+  //       destination: "https://notehub-api.goit.study/api/:path*",
+  //     },
+  //   ];
+  // },
   async headers() {
     return [
       {

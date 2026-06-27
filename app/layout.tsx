@@ -35,10 +35,8 @@ const roboto = Roboto({
 
 export default function RootLayout({
   children,
-  modal,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -46,10 +44,7 @@ export default function RootLayout({
         <TanStackProvider>
           <AuthProvider>
             <Header />
-            <main>
-              {children}
-              {modal}
-            </main>
+            <main>{children}</main>
             <Footer />
           </AuthProvider>
         </TanStackProvider>
