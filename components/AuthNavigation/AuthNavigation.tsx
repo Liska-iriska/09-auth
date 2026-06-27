@@ -19,6 +19,7 @@ const AuthNavigation = () => {
     await logout();
     clearIsAuthenticated();
     queryClient.clear();
+    router.refresh();
     router.push("/sign-in");
   };
 
