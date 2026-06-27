@@ -6,9 +6,11 @@ import { register, RegisterRequest } from "@/lib/api/clientApi";
 import css from "./SignUpPage.module.css";
 import { ApiError } from "@/lib/api/api";
 import { useAuthStore } from "@/lib/store/authStore";
+import { useQueryClient } from "@tanstack/react-query";
 
 const SignUp = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [error, setError] = useState("");
   const setUser = useAuthStore((state) => state.setUser);
 
@@ -20,6 +22,7 @@ const SignUp = () => {
       const res = await register(formValues);
       if (res) {
         setUser(res);
+        queryClient.clear();
         router.push("/profile");
       } else {
         setError("Invalid email or password");

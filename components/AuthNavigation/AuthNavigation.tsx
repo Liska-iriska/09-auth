@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/store/authStore";
 import { logout } from "@/lib/api/clientApi";
 import css from "./AuthNavigation.module.css";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AuthNavigation = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const { isAuthenticated, user } = useAuthStore();
   const clearIsAuthenticated = useAuthStore(
     (state) => state.clearIsAuthenticated,
@@ -16,6 +18,7 @@ const AuthNavigation = () => {
   const handleLogout = async () => {
     await logout();
     clearIsAuthenticated();
+    queryClient.clear();
     router.push("/sign-in");
   };
 
