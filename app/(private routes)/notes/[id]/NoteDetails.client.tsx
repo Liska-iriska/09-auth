@@ -30,7 +30,7 @@ const NoteDetailsClient = () => {
   return (
     <div className={css.container}>
       <div className={css.item}>
-        <button onClick={handleGoBack} className="backBtn">
+        <button onClick={handleGoBack} className={css.backBtn}>
           Back
         </button>
         <div className={css.header}>
